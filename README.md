@@ -9,6 +9,8 @@
 The Patient Dashboard is a modern, client-side healthcare management demo application designed to showcase essential features found in real clinical information systems. It includes fast patient search, vital-sign visualization, real-time anomaly alerts, voice note recording, and predictive health forecasting.
 
 This project runs fully in the browser with zero backend requirements — ideal for demonstrations, prototypes, student projects, or as a foundation for future clinical system integrations.
+<img width="2848" height="1532" alt="image" src="https://github.com/user-attachments/assets/348efa7e-cfd4-4908-976b-31aa5bb9de20" />
+
 
 ---
 
@@ -53,6 +55,8 @@ This project runs fully in the browser with zero backend requirements — ideal 
 ---
 
 ## 👤 Demo Patient Profiles
+<img width="2851" height="1532" alt="image" src="https://github.com/user-attachments/assets/8fe5eb23-5a5f-4586-abb7-2daf97253022" />
+
 
 ### **P001 — John Doe**, 35, Male
 
