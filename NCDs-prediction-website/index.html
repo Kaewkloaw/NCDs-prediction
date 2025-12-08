@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - Healthcare Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-heartbeat"></i> Patient Dashboard</h1>
+                <div class="header-actions">
+                    <div class="doctor-selector">
+                        <select id="doctorSelect" class="doctor-dropdown">
+                            <option value="">Select Doctor</option>
+                            <option value="sarah-wilson">Dr. Sarah Wilson</option>
+                            <option value="michael-chen">Dr. Michael Chen</option>
+                            <option value="emily-rodriguez">Dr. Emily Rodriguez</option>
+                        </select>
+                        <button id="viewTodayPatientsBtn" class="btn btn-secondary" style="display: none;">
+                            <i class="fas fa-list"></i> Today's Patients
+                        </button>
+                    </div>
+                    <button id="homeBtn" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Home
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dashboard Quick Info -->
+            <div id="dashboardQuickInfo" class="dashboard-quick-info" style="display: none;">
+                <div class="quick-info-content">
+                    <div class="patient-quick-info">
+                        <div class="patient-avatar-small">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="patient-details-small">
+                            <h4 id="quickPatientName">John Doe</h4>
+                            <span id="quickPatientId">P001</span>
+                            <span id="quickPatientDoctor">Dr. Sarah Wilson</span>
+                        </div>
+                    </div>
+                    <div class="vital-signs-quick">
+                        <div class="vital-quick-item">
+                            <span class="vital-label-small">BP</span>
+                            <span id="quickBloodPressure" class="vital-value-small">120/80</span>
+                        </div>
+                        <div class="vital-quick-item">
+                            <span class="vital-label-small">HR</span>
+                            <span id="quickHeartRate" class="vital-value-small">72 bpm</span>
+                        </div>
+                        <div class="vital-quick-item">
+                            <span class="vital-label-small">Temp</span>
+                            <span id="quickTemperature" class="vital-value-small">98.6°F</span>
+                        </div>
+                        <div class="vital-quick-item">
+                            <span class="vital-label-small">Weight</span>
+                            <span id="quickWeight" class="vital-value-small">70 kg</span>
+                        </div>
+                    </div>
+                    <div class="quick-alerts">
+                        <div id="quickAnomalyAlert" class="alert-small alert-warning-small" style="display: none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Anomalies Detected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Patient Search Section -->
+        <section id="searchSection" class="search-section">
+            <div class="search-container">
+                <div class="search-form">
+                    <div class="input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="patientIdInput" placeholder="Enter Patient ID (e.g., P001) or Patient Name">
+                        <button id="searchBtn" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="searchResults" class="search-results"></div>
+                
+                <!-- Recent Patients Table -->
+                <div class="recent-patients-section">
+                    <div class="section-title">
+                        <h3><i class="fas fa-clipboard-list"></i> Recent Patients</h3>
+                        <p>Click on any patient to view their dashboard</p>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table id="recentPatientsTable" class="patients-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Last Visit</th>
+                                    <th>Status</th>
+                                    <th>Doctor</th>
+                                    <th>Blood Pressure</th>
+                                    <th>Heart Rate</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Patients will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">Total Patients</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Need Attention</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Visited Today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doctor's Today Patients Section -->
+        <section id="todayPatientsSection" class="today-patients-section" style="display: none;">
+            <div class="section-header">
+                <h2 id="doctorTitle">Dr. Sarah Wilson - Today's Patients</h2>
+                <p id="doctorDepartmentTitle">Internal Medicine Department</p>
+            </div>
+            
+            <div class="patients-stats">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <span id="totalPatientsCount" class="stat-number">0</span>
+                        <span class="stat-label">Total Patients</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <span id="anomalyPatientsCount" class="stat-number">0</span>
+                        <span class="stat-label">With Anomalies</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span id="pendingPatientsCount" class="stat-number">0</span>
+                        <span class="stat-label">Pending Review</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="patients-list">
+                <h3><i class="fas fa-clipboard-list"></i> Patient List</h3>
+                <div id="todayPatientsList" class="today-patients-grid">
+                    <!-- Patients will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboardSection" class="dashboard-section" style="display: none;">
+            <!-- Patient Info Header -->
+            <div class="patient-header">
+                <button id="backToListBtn" class="btn btn-secondary" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Back to Patient List
+                </button>
+                <div class="patient-info">
+                    <div class="patient-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="patient-details">
+                        <h2 id="patientName">John Doe</h2>
+                        <p id="patientId">Patient ID: P001</p>
+                        <div class="patient-meta">
+                            <span id="patientAge">Age: 35</span>
+                            <span id="patientGender">Gender: Male</span>
+                            <span id="lastVisit">Last Visit: 2025-09-25</span>
+                        </div>
+                        <div class="doctor-info">
+                            <div class="doctor-details">
+                                <i class="fas fa-user-md"></i>
+                                <div>
+                                    <span id="doctorName" class="doctor-name">Dr. Sarah Wilson</span>
+                                    <span id="doctorDepartment" class="doctor-department">Internal Medicine</span>
+                                    <span id="doctorContact" class="doctor-contact">ext. 2101</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert-status">
+                    <div id="anomalyAlert" class="alert alert-warning" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Anomalies Detected</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Left Column -->
+                <div class="dashboard-left">
+                    <!-- Vital Signs -->
+                    <div class="card">
+                        <h3><i class="fas fa-heartbeat"></i> Vital Signs</h3>
+                        <div class="vital-signs">
+                            <div class="vital-item">
+                                <span class="vital-label">Blood Pressure</span>
+                                <span id="bloodPressure" class="vital-value">120/80</span>
+                            </div>
+                            <div class="vital-item">
+                                <span class="vital-label">Heart Rate</span>
+                                <span id="heartRate" class="vital-value">72 bpm</span>
+                            </div>
+                            <div class="vital-item">
+                                <span class="vital-label">Temperature</span>
+                                <span id="temperature" class="vital-value">98.6°F</span>
+                            </div>
+                            <div class="vital-item">
+                                <span class="vital-label">Weight</span>
+                                <span id="weight" class="vital-value">70 kg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice Notes -->
+                    <div class="card">
+                        <h3><i class="fas fa-microphone"></i> Voice Notes</h3>
+                        <div class="voice-notes">
+                            <div class="voice-recorder">
+                                <button id="recordBtn" class="btn btn-record">
+                                    <i class="fas fa-microphone"></i> Record
+                                </button>
+                                <button id="stopBtn" class="btn btn-stop" style="display: none;">
+                                    <i class="fas fa-stop"></i> Stop
+                                </button>
+                                <span id="recordingStatus" class="recording-status"></span>
+                            </div>
+                            <div id="voiceNotesList" class="voice-notes-list">
+                                <!-- Voice notes will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="dashboard-right">
+                    <!-- Health Trends Chart -->
+                    <div class="card">
+                        <h3><i class="fas fa-chart-line"></i> Health Trends</h3>
+                        <canvas id="healthTrendsChart"></canvas>
+                    </div>
+
+                    <!-- Anomaly Detection -->
+                    <div class="card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Anomaly Detection</h3>
+                        <div id="anomalyList" class="anomaly-list">
+                            <!-- Anomalies will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Personalized Forecasts -->
+                    <div class="card">
+                        <h3><i class="fas fa-crystal-ball"></i> Health Forecasts</h3>
+                        <div id="forecastsList" class="forecasts-list">
+                            <!-- Forecasts will be populated here -->
+                        </div>
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

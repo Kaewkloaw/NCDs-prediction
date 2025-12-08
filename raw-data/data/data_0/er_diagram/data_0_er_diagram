@@ -1,0 +1,20 @@
+// ER Diagram (data_0)
+digraph {
+	graph [fontsize=10 splines=ortho]
+	Devices [label="Devices\n--\nPK: SerialNo" shape=record]
+	Date [label="Date\n--\ndim_date" shape=record]
+	activ [label="{activ | { Battery Level | Calorie | Device | Measure Date Time | <i><u>SerialNo</u></i> | Sleep Hour | Sleep Minute | Sleep State | Step | Temperature } }" shape=record]
+	activ:SerialNo -> Devices [arrowhead=none color=black]
+	activ -> Date [arrowhead=none color=gray]
+	exist [label="{exist | { Device | Exist | Measure Date Time } }" shape=record]
+	exist -> Date [arrowhead=none color=gray]
+	other [label="{other | { -- | --.1 | --.2 | /// | ///.1 | ///.2 | 0 | 0.5 | 1 | 1.1 | 1.6 | 145.0 | 1946/9/26 | 2 | 2.1 | 2020/11/25 | 2020/12/5 | 2021/1/21 1:00 | 3 | 3 .1 } }" shape=record]
+	sphy [label="{sphy | { Battery Level | Device | Diastolic Pressure | Irregular Pulse Flag | Mean Arterial Pressure | Measure Date Time | Pulse Rate | Pulse Rate Range Detection Flag | <i><u>SerialNo</u></i> | Systolic Pressure } }" shape=record]
+	sphy:SerialNo -> Devices [arrowhead=none color=black]
+	sphy -> Date [arrowhead=none color=gray]
+	temp [label="{temp | { Battery Level | Device | Measure Date Time | <i><u>SerialNo</u></i> | Temperature } }" shape=record]
+	temp:SerialNo -> Devices [arrowhead=none color=black]
+	temp -> Date [arrowhead=none color=gray]
+	weight [label="{weight | { BMI | Basal Metabolism | Battery Level | Body Age | Body Fat Percentage | Measure Date Time | Skeletal Muscle Percentage | Visceral Fat Level | Weight | device | <u>serialNo</u> } }" shape=record]
+	weight -> Date [arrowhead=none color=gray]
+}
