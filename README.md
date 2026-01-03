@@ -10,6 +10,8 @@
   ![WebRTC](https://img.shields.io/badge/WebRTC-F6BDC0?style=for-the-badge&logo=webrtc&logoColor=white)
 </div>
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-F06292?style=for-the-badge)](https://kaewkloaw.github.io/NCDs-prediction/)
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/348efa7e-cfd4-4908-976b-31aa5bb9de20" width="45%" alt="Dashboard Main View">
   <img src="https://github.com/user-attachments/assets/8fe5eb23-5a5f-4586-abb7-2daf97253022" width="45%" alt="Patient Profiles">
