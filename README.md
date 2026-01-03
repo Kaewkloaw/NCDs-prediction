@@ -1,4 +1,4 @@
-[![Live Demo](https://img.shields.io/badge/Live-Demo-F06292?style=for-the-badge)](https://kaewkloaw.github.io/NCDs-prediction/)
+[![Link Demo](https://img.shields.io/badge/Link-Demo-F06292?style=for-the-badge)](https://kaewkloaw.github.io/NCDs-prediction/)
 
 <div align="center">
   <h1>👩‍🦳 NCDs-prediction [mock-up version] 🤖</h1>
