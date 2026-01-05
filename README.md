@@ -40,12 +40,8 @@
     ```bash
     cd NCDs-prediction
     ```
-3.  **Start the project:**
-    ```bash
-    # Simply open the index.html file in your browser
-    # OR if using VS Code with Live Server:
-    # Right-click index.html -> Open with Live Server
-    ```
+3.  **Start the project with Right-click index.html and open with Live Server**
+<br>
 ## 🤝 Team
 <div>
  
