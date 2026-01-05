@@ -42,6 +42,7 @@
     ```
 3.  **Start the project with Right-click index.html and open with Live Server**
 <br>
+
 ## 🤝 Team
 <div>
  
